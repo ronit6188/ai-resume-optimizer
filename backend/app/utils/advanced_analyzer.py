@@ -321,9 +321,10 @@ class AdvancedResumeAnalyzer:
             next_level_requirements=next_reqs
         )
     
-    def _generate_level_explanation(self, level: str, score: int) -> str:
+def _generate_level_explanation(self, level: str, score: int) -> str:
+    """Generate detailed explanation for the classified level"""
 
-        measurable_achievements_count = len(
+    measurable_achievements_count = len(
         re.findall(r"\d+%|\$\d+", self.resume_text)
     )
 
