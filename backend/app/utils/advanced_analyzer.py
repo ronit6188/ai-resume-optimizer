@@ -322,7 +322,6 @@ class AdvancedResumeAnalyzer:
         )
     
     def _generate_level_explanation(self, level: str, score: int) -> str:
-    """Generate detailed explanation for the classified level"""
 
     measurable_achievements_count = len(
         re.findall(r"\d+%|\$\d+", self.resume_text)
