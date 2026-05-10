@@ -782,58 +782,7 @@ function AnalysisPanel({ analysis, resumeName }: { analysis: Analysis | null; re
           </div>
         )}
       </div>
-
-      <AnimatePresence>
-        {confirmDeleteId ? (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50"
-              onClick={() => setConfirmDeleteId(null)}
-            >
-              <motion.div
-                initial={{ scale: 0.95 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0.95 }}
-                className="bg-surface-primary border border-border-subtle rounded-2xl p-6 max-w-md w-full mx-4 shadow-2xl"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center">
-                    <ExclamationTriangleIcon className="w-6 h-6 text-red-400" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-white">Delete Resume?</h3>
-                    <p className="text-gray-500 text-sm">This action cannot be undone.</p>
-                  </div>
-                </div>
-                <p className="text-gray-400 mb-6">
-                  Are you sure you want to delete this resume? All related analyses will also be removed.
-                </p>
-                <div className="flex gap-3">
-                  <button
-                    type="button"
-                    onClick={() => setConfirmDeleteId(null)}
-                    className="flex-1 px-4 py-2 rounded-xl border border-border-subtle text-gray-400 hover:bg-surface-secondary transition-colors"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => onDeleteResume(confirmDeleteId)}
-                    disabled={deletingResumeId === confirmDeleteId}
-                    className="flex-1 px-4 py-2 rounded-xl bg-red-500 text-white font-medium hover:bg-red-600 transition-colors disabled:opacity-50"
-                  >
-                    {deletingResumeId === confirmDeleteId ? "Deleting..." : "Delete"}
-                  </button>
-                </div>
-              </motion.div>
-            </motion.div>
-          </>
-        ) : null}
-      </AnimatePresence>
+        
     </div>
   );
 }
