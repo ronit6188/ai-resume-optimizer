@@ -1,4 +1,4 @@
-"""Base API client with error handling."""
+//Base API client with error handling.
 
 const API_BASE = process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:8001/api/v1";
 
