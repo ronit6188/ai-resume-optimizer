@@ -322,18 +322,69 @@ class AdvancedResumeAnalyzer:
         )
     
     def _generate_level_explanation(self, level: str, score: int) -> str:
-        """Generate detailed explanation for the classified level"""
-        explanations = {
-            "Rookie": f"Based on the resume content, this candidate appears to be at an entry-level stage with limited professional experience. The content score of {score}/100 suggests foundational skills are being developed. Focus on building strong fundamentals and gaining practical experience.",
-            "Beginner": f"This candidate shows developing skills with some relevant knowledge. A score of {score}/100 indicates they're moving beyond basics but still building expertise. Consider junior-level positions that offer learning opportunities.",
-            "Fresher": f"The resume suggests a recent graduate or early career professional. With {self.word_count} words of content, there's evidence of academic preparation. Target entry-level roles that provide growth potential.",
-            "Junior": f"This candidate has some professional experience and foundational skills. The score of {score}/100 shows capability for junior responsibilities. Look for roles that can leverage existing knowledge while developing further.",
-            "Intermediate": f"A solid skill foundation with {self.word_count} words of demonstrated experience. This candidate can handle moderate complexity work independently. Suitable for mid-level positions with appropriate guidance.",
-            "Professional": f"This resume demonstrates proven capabilities with {len(re.findall(r'\d+%|\$\d+', self.resume_text))} measurable achievements. The candidate can contribute immediately in suitable roles. Consider positions requiring independent execution.",
-            "Senior": f"Strong technical depth and leadership indicators suggest senior-level capability. The comprehensive content demonstrates ability to handle complex challenges. Ready for leadership roles with minimal supervision.",
-            "Expert": f"Exceptional profile with extensive technical expertise and proven impact. This candidate can drive technical strategy and lead teams effectively. Suitable for principal or leadership positions."
-        }
-        return explanations.get(level, explanations["Intermediate"])
+    """Generate detailed explanation for the classified level"""
+
+    measurable_achievements_count = len(
+        re.findall(r"\d+%|\$\d+", self.resume_text)
+    )
+
+    explanations = {
+        "Rookie": (
+            f"Based on the resume content, this candidate appears to be at an "
+            f"entry-level stage with limited professional experience. "
+            f"The content score of {score}/100 suggests foundational skills "
+            f"are being developed. Focus on building strong fundamentals "
+            f"and gaining practical experience."
+        ),
+
+        "Beginner": (
+            f"This candidate shows developing skills with some relevant knowledge. "
+            f"A score of {score}/100 indicates they're moving beyond basics "
+            f"but still building expertise. Consider junior-level positions "
+            f"that offer learning opportunities."
+        ),
+
+        "Fresher": (
+            f"The resume suggests a recent graduate or early career professional. "
+            f"With {self.word_count} words of content, there's evidence of "
+            f"academic preparation. Target entry-level roles that provide "
+            f"growth potential."
+        ),
+
+        "Junior": (
+            f"This candidate has some professional experience and foundational skills. "
+            f"The score of {score}/100 shows capability for junior responsibilities. "
+            f"Look for roles that can leverage existing knowledge while developing further."
+        ),
+
+        "Intermediate": (
+            f"A solid skill foundation with {self.word_count} words of demonstrated experience. "
+            f"This candidate can handle moderate complexity work independently. "
+            f"Suitable for mid-level positions with appropriate guidance."
+        ),
+
+        "Professional": (
+            f"This resume demonstrates proven capabilities with "
+            f"{measurable_achievements_count} measurable achievements. "
+            f"The candidate can contribute immediately in suitable roles. "
+            f"Consider positions requiring independent execution."
+        ),
+
+        "Senior": (
+            f"Strong technical depth and leadership indicators suggest "
+            f"senior-level capability. The comprehensive content demonstrates "
+            f"ability to handle complex challenges. Ready for leadership roles "
+            f"with minimal supervision."
+        ),
+
+        "Expert": (
+            f"Exceptional profile with extensive technical expertise and proven impact. "
+            f"This candidate can drive technical strategy and lead teams effectively. "
+            f"Suitable for principal or leadership positions."
+        )
+    }
+
+    return explanations.get(level, explanations["Intermediate"])
     
     def _get_next_level_requirements(self, current_level: str) -> List[str]:
         """Get requirements to reach the next seniority level"""
