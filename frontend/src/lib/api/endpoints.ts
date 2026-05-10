@@ -1,4 +1,4 @@
-///Typed API endpoint functions."""
+///Typed API endpoint functions.
 
 import { apiClient } from "./client";
 
