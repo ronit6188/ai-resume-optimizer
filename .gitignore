@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+!.env.local.example
+__pycache__/
+*.py[cod]
+*.sqlite
+*.db
+.pytest_cache/
+node_modules/
+.next/
+out/
+dist/
+.nvm/
+.nodejs/
+.npm-cache/
